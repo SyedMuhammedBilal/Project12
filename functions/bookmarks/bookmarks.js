@@ -17,11 +17,13 @@ const typeDefs = gql`
   }
 `
 
+// 'fnAD4rD79uACBf1b_fw0JuvbuHhY8TG5va6W8F1w'
+
 const resolvers = {
   Query: {
     bookmark: async (root, args, context) => {
       try {
-        var client = new faunadb.Client({ secret: 'fnAD4rD79uACBf1b_fw0JuvbuHhY8TG5va6W8F1w' });
+        var client = new faunadb.Client({ secret: process.env.FDB });
         var result = await client.query(
           q.Map(
             q.Paginate(q.Match(q.Index('url'))),
